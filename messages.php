@@ -1,9 +1,23 @@
-<html>
-<body>
+<?php
+// database connection code
+// $con = mysqli_connect('localhost', 'database_user', 'database_password','database');
 
-Name <?php echo $_POST["name"]; ?><br>
-Email <?php echo $_POST["email"]; ?><br>
-Message <?php echo $_POST["message"]; ?><br>
+$con = mysqli_connect('localhost', 'root', '','db_contact');
 
-</body>
-</html>
+// get the post records
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+
+// database insert SQL code
+$sql = "INSERT INTO `tbl_contact` (`id`, `fd_name`, `fd_email`, `fd_message`) VALUES ('0', '$name', '$email', '$message')";
+
+// insert in database 
+$rs = mysqli_query($con, $sql);
+
+if($rs)
+{
+	echo "Contact Records Inserted";
+}
+
+?>
